@@ -20,8 +20,9 @@ const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
         </button>
         <button
           className="see-task-details-button"
+          
         >
-          <CgInfo />
+          <CgInfo/>
         </button>
       </div>
     </div>

@@ -1,12 +1,10 @@
 import { useState } from "react";
-
-
-import Tasks from "./components/Tasks";
-import AddTask from "./components/AddTask";
-import Header from "./components/UI/Header";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-
+import AddTask from "./components/AddTask";
+import TaskDetails from "./components/TaskDetails";
+import Tasks from "./components/Tasks";
+import Header from "./components/UI/Header";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -58,15 +56,28 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <Header/>
-      <AddTask handleTaskAdd={handleTaskAdd} />
-      <Tasks
-        tasks={tasks}
-        handleTaskClick={handleTaskClick}
-        handleTaskDeletion={handleTaskDeletion}
-      />
-    </div>
+    <Router>
+      <div className="container">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <>
+                <AddTask handleTaskAdd={handleTaskAdd} />
+                <Tasks
+                  tasks={tasks}
+                  handleTaskClick={handleTaskClick}
+                  handleTaskDeletion={handleTaskDeletion}
+                />
+              </>
+            }
+          />
+          <Route path="/details" exact element={<TaskDetails/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
