@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import AddTask from "./components/AddTask";
@@ -24,6 +25,17 @@ const App = () => {
       completed: true,
     },
   ]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const {data} = await axios.get(
+        "https://jsonplaceholder.cypress.io/todos?_limit=10"
+      );
+      setTasks(data)
+    };
+    fetchTasks();
+  }, []);
+
   // let messages = 'Hello world'
 
   const handleTaskClick = (taskId) => {
@@ -74,7 +86,7 @@ const App = () => {
               </>
             }
           />
-          <Route path="/details" exact element={<TaskDetails/>}/>
+          <Route path="/:taskTitle" exact element={<TaskDetails />} />
         </Routes>
       </div>
     </Router>

@@ -1,9 +1,13 @@
 import Button from "./UI/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import './TaskDetails.css'
 
 const TaskDetails = () => {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  // Retorna parâmetros
+  const params = useParams();
+    console.log(params)
   const backHomePageHandle = () => {
     navigate("/");
   };
@@ -11,7 +15,7 @@ const TaskDetails = () => {
   return (
     <>
       <div className="task-details-container">
-        <p></p>
+        <h2>{params.taskTitle}</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
           unde, mollitia dolores deserunt quas rem?

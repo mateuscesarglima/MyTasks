@@ -38,7 +38,7 @@ const AddTask = ({ handleTaskAdd }) => {
           type="text"
           id="addTask"
           name="addTask"
-          placeholder="Add task"
+          placeholder="Adicionar atividade"
           value={task}
           onChange={taskChangeHandler}
         />
